@@ -1,0 +1,8 @@
+flask
+scikit-learn
+plotly
+pandas
+kafka-python
+Flask-SocketIO
+eventlet
+flask_cors
