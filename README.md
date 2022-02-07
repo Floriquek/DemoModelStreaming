@@ -37,7 +37,7 @@ Prepare environment
 root@tron-VirtualBox:/home/tron/Desktop/DemoModelStreaming/flask/buildimage# docker build -t pandas .
 ```
 
-2. Create zookeeper and kafka modules for necessary dependencies and requirements:
+2. Create zookeeper, flask and kafka modules for necessary dependencies and requirements:
 
 ```
 root@tron-VirtualBox:/home/tron/Desktop/DemoModelStreaming/zookeeper# go mod init zookeeper
@@ -228,7 +228,7 @@ root@tron-VirtualBox:~# curl -X POST localhost:31624/predict -d '{"data": [7.1, 
 
 ```
 
-10. Now, if you check in your consumer... 
+10. Now, if you check in your consumer, the predictions output shoudld appear... 
 ```
 root@tron-VirtualBox:/home/tron/Desktop/DemoModelStreaming# ./consumer.sh kafka-1-7br6b
 0
