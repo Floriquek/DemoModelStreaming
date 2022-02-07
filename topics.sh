@@ -2,7 +2,7 @@
 
 if [ $# -lt 1 ]
 then
-        echo "provide arguments: ./script.sh KAFKA_ARG"
+        echo "provide arguments: ./topics.sh KAFKA_ARG"
 fi
 
 KAFKA=$1
