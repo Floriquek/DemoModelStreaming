@@ -94,7 +94,7 @@ root@tron-VirtualBox:/home/tron/Desktop/DemoModelStreaming# pulumi up
 Do you want to perform this update? yes
 
 [ ... snip ... ] 
-Updating (exampleModel):
+Updating (ZooKaBo):
      Type                                            Name                         Status      Info
  +   pulumi:pulumi:Stack                             anotherExample-exampleModel  created     11 messages
  +   ├─ zookeeper-app                                zoo1                         created
