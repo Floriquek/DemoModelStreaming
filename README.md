@@ -84,10 +84,10 @@ Created stack 'ZooKaBo'
 Enter your passphrase to protect config/secrets:
 Re-enter your passphrase to confirm:
 ```
-And now create the resources:
+4. And now create the resources (provide the PULUMI_CONFIG_PASSPHRASE and PULUMI_CONFIG_PASSPHRASE_FILE):
 
 ```
-pulumi up 
+root@tron-VirtualBox:/home/tron/Desktop/DemoModelStreaming# pulumi up 
 
 [ ... snip ... ]
 Do you want to perform this update? yes
@@ -130,7 +130,7 @@ Duration: 19s
 
 ```
 
-Check for created resources:
+5. Check for created resources:
 
 ```
 root@tron-VirtualBox:/home/tron/Desktop/DemoModelStreaming# kubectl get svc
@@ -169,3 +169,74 @@ zoo2                   1/1     1            1           2m32s
 zoo3                   1/1     1            1           2m37s
 
 ```
+
+6. Run script topics.sh to create topic "test1" (pass one of the kafka pods as argument)
+
+```
+root@tron-VirtualBox:/home/tron/Desktop/DemoModelStreaming# ./topics.sh kafka-1-7br6b
+topics, if any
+here are the topics:
+checking and/or creating topic test1
+creating topic
+Created topic "test1".
+list again topics
+test1
+
+```
+
+7. Start Flask service 
+
+```
+root@tron-VirtualBox:/home/tron/Desktop/DemoModelStreaming# kubectl exec flaskdepdep-cqlpe724-746c65fb89-hk4cd -- ls
+requirements.txt
+svc_model.model
+testflkafka.py
+train.py
+root@tron-VirtualBox:/home/tron/Desktop/DemoModelStreaming# kubectl exec flaskdepdep-cqlpe724-746c65fb89-hk4cd -- python3 testflkafka.py
+DEBUG:kafka.protocol.parser:Received correlation id: 3
+DEBUG:kafka.protocol.parser:Processing response MetadataResponse_v1
+DEBUG:kafka.conn:<BrokerConnection node_id=bootstrap-0 host=kafka-1.default.svc.cluster.local:9092 <connected> [IPv4 ('10.105.38.244', 9092)]> Response 3 (5.538702011108398 ms): MetadataResponse_v1(brokers=[(node_id=2, host='kafka-2', port=9092, rack=None), (node_id=1, host='kafka-1', port=9092, rack=None), (node_id=3, host='kafka-3', port=9092, rack=None)], controller_id=2, topics=[(error_code=0, topic='test1', is_internal=False, partitions=[(error_code=0, partition=0, leader=3, replicas=[3], isr=[3])])])
+DEBUG:kafka.cluster:Updated cluster metadata to ClusterMetadata(brokers: 3, topics: 1, groups: 0)
+ * Serving Flask app 'testflkafka' (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: on
+[ ... snip ... ]
+
+```
+8. From another terminal start the consumer with the consumer.sh script (pass a kafka pod as argument):
+
+```
+root@tron-VirtualBox:/home/tron/Desktop/DemoModelStreaming# ./consumer.sh kafka-1-7br6b
+
+
+```
+
+9. From another terminal, send data for obtaining prediction (Flask & Kafka Producer are integrated) with the help of curl:
+
+```
+root@tron-VirtualBox:~# curl -X POST localhost:31624/predict -d '{"data": [1.1, 2.5, 1.4, 2.2]}' -H 'Content-Type: application/json'
+{
+  "prediction": "0"
+}
+root@tron-VirtualBox:~# curl -X POST localhost:31624/predict -d '{"data": [7.1, 6.5, 10.4, 4.2]}' -H 'Content-Type: application/json'
+{
+  "prediction": "2"
+}
+
+```
+
+10. Now, if you check in your consumer... 
+```
+root@tron-VirtualBox:/home/tron/Desktop/DemoModelStreaming# ./consumer.sh kafka-1-7br6b
+0
+2
+```
+
+<br>
+<br>
+<b><i>Kudos:</i></b><br>
+<i> The model training based on following tutorial: https://blog.dataiku.com/how-to-perform-basic-ml-serving-with-python-docker-kubernetes </i><br>
+<i> Kafka &Zookeeper Golang code based on the YAML manifests from this repository: https://github.com/navicore/kafka-on-kubernetes </i>
+   
