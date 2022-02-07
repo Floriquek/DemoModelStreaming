@@ -29,7 +29,7 @@ Server Version: version.Info{Major:"1", Minor:"23", GitVersion:"v1.23.1", GitCom
 
 ```
 
-Prepare environment
+<b> Prepare environment </b>
 
 1. Under DemoModelStreaming/flask/buildimage, prepare local "pandas" image:'
 
@@ -184,6 +184,10 @@ list again topics
 test1
 
 ```
+<br>
+<b>Serve and Stream </b>
+<br>
+
 
 7. Start Flask service 
 
@@ -235,6 +239,7 @@ root@tron-VirtualBox:/home/tron/Desktop/DemoModelStreaming# ./consumer.sh kafka-
 2
 ```
 
+<i> Fini!</i>
 <br>
 <br>
 <b><i>Kudos:</i></b><br>
