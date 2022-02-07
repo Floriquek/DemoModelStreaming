@@ -2,7 +2,7 @@
 
 <br>
 <br>
-<b> Scope: </b> Preparing and deploying with Pulumi-Golang a very simple Model Streaming with Flask and Kafka.
+<b> Scope: </b> Preparing and deploying a very simple Model Streaming with the help of Pulumi-Golang
 <br>
 <br>
 
