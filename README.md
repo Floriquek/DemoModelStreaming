@@ -14,6 +14,7 @@ DISTRIB_ID=Ubuntu
 DISTRIB_RELEASE=20.04
 DISTRIB_CODENAME=focal
 DISTRIB_DESCRIPTION="Ubuntu 20.04.3 LTS"
+root@tron-VirtualBox:~#
 root@tron-VirtualBox:~# pulumi version
 v3.22.1
 root@tron-VirtualBox:~#
