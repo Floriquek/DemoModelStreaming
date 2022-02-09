@@ -69,7 +69,7 @@ root@tron-VirtualBox:/home/tron/Desktop/DemoModelStreaming# go mod edit --replac
 root@tron-VirtualBox:/home/tron/Desktop/DemoModelStreaming# go mod edit --replace flask=./flask
 root@tron-VirtualBox:/home/tron/Desktop/DemoModelStreaming#
 root@tron-VirtualBox:/home/tron/Desktop/DemoModelStreaming# go mod tidy
-root@tron-VirtualBox:/home/tron/Desktop/DemoModelStreaming# go mod tidy
+
 go: finding module for package github.com/pulumi/pulumi/sdk/v3/go/pulumi
 go: found flask in flask v0.0.0-00010101000000-000000000000
 go: found kafka in kafka v0.0.0-00010101000000-000000000000
@@ -79,6 +79,7 @@ go: found zookeeper in zookeeper v0.0.0-00010101000000-000000000000
 
 3. Initiate your Stack
 ```
+root@tron-VirtualBox:/home/tron/Desktop/DemoModelStreaming# pulumi login --local
 root@tron-VirtualBox:/home/tron/Desktop/DemoModelStreaming# pulumi stack init
 stack name: (dev) ZooKaBo
 Created stack 'ZooKaBo'
